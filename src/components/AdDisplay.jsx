@@ -62,10 +62,10 @@ function AdDisplay() {
 
     //Then I have to call the standardizeNames function on each ad within platform array.
 
-    const s_facebook_ads = facebook_ads.map(ad => standardizeNames(ad, keyMap))
-    const s_twitter_ads = twitter_ads.map(ad => standardizeNames(ad, keyMap))
-    const s_snapchat_ads = snapchat_ads.map(ad => standardizeNames(ad, keyMap))
-    const s_google_ads = google_ads.map(ad => standardizeNames(ad, keyMap))
+    const s_facebook_ads = standardizeNames(facebook_ads)
+    const s_twitter_ads = standardizeNames(twitter_ads)
+    const s_snapchat_ads = standardizeNames(snapchat_ads)
+    const s_google_ads = standardizeNames(google_ads)
 
     //Then I have to take the arrays and consolidate them into one array.
 
