@@ -70,10 +70,10 @@ function AdDisplay() {
     //Then I have to take the arrays and consolidate them into one array.
 
     const allAds = [
-        ...facebook_ads,
-        ...twitter_ads,
-        ...snapchat_ads,
-        ...google_ads
+        ...s_facebook_ads,
+        ...s_twitter_ads,
+        ...s_snapchat_ads,
+        ...s_google_ads
     ] 
 
 return (
