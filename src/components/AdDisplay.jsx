@@ -79,6 +79,16 @@ function AdDisplay() {
 return (
     <div>
         <h1>Ad Data</h1>
+        {allAds.map((ad, index) => (
+            <div key={index}>
+            <h1>Campaign: {ad.campaign}</h1>
+            <p>Media Buy: {ad.media_buy}</p>
+            <p>Creative: {ad.creative}</p>
+            <p>Spend: {ad.spend}</p>
+            <p>Clicks: {ad.clicks}</p>
+            </div>
+        ))}
+        
     </div>
 )
 
