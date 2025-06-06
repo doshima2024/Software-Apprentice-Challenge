@@ -51,24 +51,23 @@ function AdDisplay() {
         })
 
     }
+ 
 
     //first I have to extract each platform's array of data from the larger data set and set it to a var i.e "facebook_ads"
-    //Then I have to call the standardizeNames function on each ad within platform array.
-    //Then I have to take the arrays and "flatten" them into one array.
-    //I will then be able to map over this array with a foreach() (?) and display the correct properties in the JSX
 
     const facebook_ads = adData["facebook_ads"]
     const twitter_ads = adData["twitter_ads"]
     const snapchat_ads = adData["snapchat_ads"]
     const google_ads = adData["google_analytics"]
 
+    //Then I have to call the standardizeNames function on each ad within platform array.
+
     const s_facebook_ads = facebook_ads.map(ad => standardizeNames(ad, keyMap))
     const s_twitter_ads = twitter_ads.map(ad => standardizeNames(ad, keyMap))
     const s_snapchat_ads = snapchat_ads.map(ad => standardizeNames(ad, keyMap))
     const s_google_ads = google_ads.map(ad => standardizeNames(ad, keyMap))
 
-    console.log("original facebook ad:", facebook_ads[0])
-    console.log("standardized facebook ad:", s_facebook_ads[0])
+      
 
 return (
     <div>
