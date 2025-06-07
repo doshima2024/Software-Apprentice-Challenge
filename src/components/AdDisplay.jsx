@@ -71,13 +71,33 @@ function AdDisplay() {
     const s_snapchat_ads = standardizeNames(snapchat_ads, keyMap)
     const s_google_ads = standardizeNames(google_ads, keyMap)
 
+    //I need a function to merge the Google Analytics "results" data into each corresponding ad object.
+    
+    function mergeGAResults(adArray, gaArray) {
+        return adArray.map(ad => {
+            const match = gaArray.find(gaObject =>
+            gaObject["campaign"] === ad["campaign"] &&
+            gaObject["creative"] === ad["creative"]
+            )
+            return {
+                ...ad,
+                results: match ? match.results : "N/A`"
+            }
+        })
+    }
+
+    //Then I have to call the mergeGAResults function to generate the new data, which includes the "results" from Google Analytics:
+
+    const s_facebook_ads_results = mergeGAResults(s_facebook_ads, s_google_ads)
+    const s_twitter_ads_results = mergeGAResults(s_twitter_ads, s_google_ads)
+    const s_snapchat_ads_results = mergeGAResults(s_snapchat_ads, s_google_ads)
+
     //Then I have to take the arrays and consolidate them into one array.
 
     const allAds = [
-        ...s_facebook_ads,
-        ...s_twitter_ads,
-        ...s_snapchat_ads,
-        ...s_google_ads
+        ...s_facebook_ads_results,
+        ...s_twitter_ads_results,
+        ...s_snapchat_ads_results,
     ] 
 
 return (
@@ -90,6 +110,7 @@ return (
             <p>Creative: {ad.creative}</p>
             <p>Spend: {ad.spend}</p>
             <p>Clicks: {ad.clicks}</p>
+            <p>Results: {ad.results}</p>
             </div>
         ))}
         
