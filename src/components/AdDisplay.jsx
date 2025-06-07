@@ -51,6 +51,10 @@ function AdDisplay() {
         })
 
     }
+
+      if (!adData || Object.keys(adData).length === 0) {
+     return <div>Loading...</div>;
+     }
  
 
     //first I have to extract each platform's array of data from the larger data set and set it to a var i.e "facebook_ads"
@@ -62,10 +66,10 @@ function AdDisplay() {
 
     //Then I have to call the standardizeNames function on each ad within platform array.
 
-    const s_facebook_ads = standardizeNames(facebook_ads)
-    const s_twitter_ads = standardizeNames(twitter_ads)
-    const s_snapchat_ads = standardizeNames(snapchat_ads)
-    const s_google_ads = standardizeNames(google_ads)
+    const s_facebook_ads = standardizeNames(facebook_ads, keyMap)
+    const s_twitter_ads = standardizeNames(twitter_ads, keyMap)
+    const s_snapchat_ads = standardizeNames(snapchat_ads, keyMap)
+    const s_google_ads = standardizeNames(google_ads, keyMap)
 
     //Then I have to take the arrays and consolidate them into one array.
 
