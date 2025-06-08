@@ -81,7 +81,7 @@ function AdDisplay() {
             )
             return {
                 ...ad,
-                results: match ? match.results : "N/A`"
+                results: match ? match.results : "N/A"
             }
         })
     }
@@ -104,7 +104,7 @@ return (
     <div>
         <h1>Ad Data</h1>
         {allAds.map((ad, index) => (
-            <div key={index}>
+            <div key={index} className="bg-white shadow-md rounded-lg p-4 w-full sm:w-[300px]" >
             <h1>Campaign: {ad.campaign}</h1>
             <p>Media Buy: {ad.media_buy}</p>
             <p>Creative: {ad.creative}</p>
