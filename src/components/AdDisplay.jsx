@@ -114,7 +114,7 @@ function AdDisplay() {
         }
     }
 
-    // I need to create a variable to hold sorted ads (the result of running getSortedAds on allAds)
+    // I logic to filter each ad by search term
 
     const filteredAds = getSortedAds(allAds).filter((ad) =>
     ad.campaign.toLowerCase().includes(searchTerm.toLowerCase()));
