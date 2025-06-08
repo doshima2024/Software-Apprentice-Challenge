@@ -6,6 +6,7 @@ function AdDisplay() {
 
     const [adData, setAdData] = useState([]);
     const [sortOrder, setSortOrder] = useState(null);
+    const [searchTerm, setSearchTerm] = useState("")
 
     //fetching the data from the backend and setting it to the state variable for adData
 
@@ -104,7 +105,7 @@ function AdDisplay() {
     // I have to write a function to sort ads in ascending or descending order, or leave as is, depending on the value of the sortOrder state variable
 
     const getSortedAds = (ads) => {
-        if (sortOrder = "asc"){
+        if (sortOrder === "asc"){
             return [...ads].sort((a,b) => a.spend - b.spend)
         } else if (sortOrder === "desc") {
             return [...ads].sort((a,b) => b.spend - a.spend)
@@ -115,12 +116,26 @@ function AdDisplay() {
 
     // I need to create a variable to hold sorted ads (the result of running getSortedAds on allAds)
 
-    const sortedAds = getSortedAds(allAds);
+    const filteredAds = getSortedAds(allAds).filter((ad) =>
+    ad.campaign.toLowerCase().includes(searchTerm.toLowerCase()));
+
 
 return (
     <div>
         <h1>Ad Data</h1>
-        {allAds.map((ad, index) => (
+        <div className="flex flex-col space-y-2 mb-4">
+            <button onClick={() => setSortOrder("asc")} className="bg-blue-500 text-white rounded">Sort By Spend Asc</button>
+            <button onClick={() => setSortOrder("desc")} className="bg-blue-500 text-white rounded">Sort By Spend Desc</button>
+            <button onClick={() => setSortOrder(null)} className="bg-blue-500 text-white rounded">Reset</button>
+        </div>
+        <div>
+            <h3>Search for Campaign by Name</h3>
+            <form>
+                <input type="text" value={searchTerm} onChange={(event) => setSearchTerm(event.target.value)}>
+                </input>
+            </form>
+        </div>
+        {filteredAds.map((ad, index) => (
             <div key={index} className="bg-white shadow-md rounded-lg p-4 w-full sm:w-[300px]" >
             <h1>Campaign: {ad.campaign}</h1>
             <p>Media Buy: {ad.media_buy}</p>
