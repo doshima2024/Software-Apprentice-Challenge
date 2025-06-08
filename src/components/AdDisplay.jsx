@@ -5,6 +5,7 @@ function AdDisplay() {
     //setting up state for adData
 
     const [adData, setAdData] = useState([]);
+    const [sortOrder, setSortOrder] = useState(null);
 
     //fetching the data from the backend and setting it to the state variable for adData
 
@@ -99,6 +100,22 @@ function AdDisplay() {
         ...s_twitter_ads_results,
         ...s_snapchat_ads_results,
     ] 
+
+    // I have to write a function to sort ads in ascending or descending order, or leave as is, depending on the value of the sortOrder state variable
+
+    const getSortedAds = (ads) => {
+        if (sortOrder = "asc"){
+            return [...ads].sort((a,b) => a.spend - b.spend)
+        } else if (sortOrder === "desc") {
+            return [...ads].sort((a,b) => b.spend - a.spend)
+        } else {
+            return ads;
+        }
+    }
+
+    // I need to create a variable to hold sorted ads (the result of running getSortedAds on allAds)
+
+    const sortedAds = getSortedAds(allAds);
 
 return (
     <div>
